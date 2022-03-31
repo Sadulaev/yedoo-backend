@@ -5,12 +5,15 @@ const foodSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    image: String,
+    image: {
+        type: String,
+        default: 'https://www.ixbt.com/img/n1/news/2021/9/5/d5d11c91b095686fcaa0f14cf8bbb7fa-600x450_large.jpg'
+    },
     info: String,
     category: {
         type: String,
         required: true,
-        default: 'https://m.media-amazon.com/images/I/41-IFltEa7L._SX355_.jpg'
+        
     },
     price: {
         type: Number,
