@@ -16,6 +16,6 @@ const orderSchema = mongoose.Schema({
     total: Number
 })
 
-const Order = mongoose.model('Order', clientSchema)
+const Order = mongoose.model('Order', orderSchema)
 
 module.exports = Order;
