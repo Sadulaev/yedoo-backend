@@ -1,21 +1,23 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema({
-    clientId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Client'
+  clientId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Client",
+  },
+  foodId: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Food",
     },
-    foodId: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Food'
-    }],
-    cafeId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cafe'
-    },
-    total: Number
-})
+  ],
+  cafeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Cafe",
+  },
+  total: Number,
+});
 
-const Order = mongoose.model('Order', orderSchema)
+const Order = mongoose.model("Order", orderSchema);
 
 module.exports = Order;
