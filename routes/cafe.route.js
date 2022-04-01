@@ -1,7 +1,6 @@
 const { cafeController } = require("../controllers/cafe.controller");
 const { Router } = require("express");
-import authMiddleware from "../middleware/auth.middleware";
-import { route } from "./category.route";
+const authMiddleware = require('../middleware/auth.middleware');
 
 const router = Router();
 

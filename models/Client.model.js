@@ -10,15 +10,15 @@ const clientSchema = mongoose.Schema({
     required: true
   },
   mail: String,
-  adress: {
+  address: {
     type: String,
     required: true
   },
+  password: String,
   role: {
     type: String,
     default: "client"
-  },
-  password: String
+  }
 });
 
 const Client = mongoose.model("Client", clientSchema);

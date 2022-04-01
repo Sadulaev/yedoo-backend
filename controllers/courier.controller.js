@@ -10,13 +10,13 @@ module.exports.courierController = {
     }
   },
   editCourier: async (req, res) => {
-    const { name, phone, mail, adress } = req.body;
+    const { name, phone, mail, address } = req.body;
     try {
       const editedCourier = await Courier.findByIdAndUpdate(req.params.id, {
         name,
         phone,
         mail,
-        adress
+        address
       });
     } catch (e) {
       res.json({ error: e.toString() });
@@ -31,7 +31,7 @@ module.exports.courierController = {
     }
   },
   signUpCourier: async (req, res) => {
-    const { password, name, phone, mail, adress } = req.body;
+    const { password, name, phone, mail, address } = req.body;
     const hash = await bcrypt.hash(password, Number(BCRYPT_ROUNDS));
     try {
       await Courier.create({
@@ -39,7 +39,7 @@ module.exports.courierController = {
         name,
         phone,
         mail,
-        adress
+        address
       });
       res.status(200).json("Клиент создан");
     } catch (e) {

@@ -16,7 +16,7 @@ const cafeSchema = mongoose.Schema({
     required: true
   },
   mail: String,
-  adress: {
+  address: {
     type: String,
     required: true
   },
