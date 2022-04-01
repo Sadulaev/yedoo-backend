@@ -11,12 +11,12 @@ module.exports.clientController = {
   },
   // createClient: async (req, res) => {
   //   try {
-  //     const { name, phone, mail, adress } = req.body;
+  //     const { name, phone, mail, address } = req.body;
   //     await Client.create({
   //       name,
   //       phone,
   //       mail,
-  //       adress
+  //       address
   //     });
   //     res.status(200).json("Клиент создан");
   //   } catch (e) {
@@ -32,7 +32,7 @@ module.exports.clientController = {
     }
   },
   signUpClient: async (req, res) => {
-    const { password, name, phone, mail, adress } = req.body;
+    const { password, name, phone, mail, address } = req.body;
     const hash = await bcrypt.hash(password, Number(BCRYPT_ROUNDS));
     try {
       await Client.create({
@@ -40,7 +40,7 @@ module.exports.clientController = {
         name,
         phone,
         mail,
-        adress
+        address
       });
       res.status(200).json("Клиент создан");
     } catch (e) {

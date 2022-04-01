@@ -10,7 +10,7 @@ const courierSchema = mongoose.Schema({
     required: true
   },
   mail: String,
-  adress: {
+  address: {
     type: String,
     required: true
   },
@@ -21,6 +21,6 @@ const courierSchema = mongoose.Schema({
   password: String
 });
 
-const Courier = mongoose.model("Courier", clientSchema);
+const Courier = mongoose.model("Courier", courierSchema);
 
 module.exports = Courier;

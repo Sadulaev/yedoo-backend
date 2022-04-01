@@ -1,5 +1,5 @@
 const { foodController } = require("../controllers/food.controller");
-import authMiddleware from "../middleware/auth.middleware";
+const authMiddleware = require("../middleware/auth.middleware");
 
 const { Router } = require("express");
 

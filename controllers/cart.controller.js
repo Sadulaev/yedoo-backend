@@ -14,7 +14,7 @@ module.exports.cartController = {
       const { foodId, total } = req.body;
       await Cart.create({
         foodId,
-        total,
+        total
       }),
         res.status(200).json("Корзина создана");
     } catch (e) {
@@ -28,5 +28,5 @@ module.exports.cartController = {
     } catch (e) {
       res.status(400).json({ error: e.toString() });
     }
-  },
+  }
 };

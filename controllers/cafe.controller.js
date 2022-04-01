@@ -10,30 +10,15 @@ module.exports.cafeController = {
       const allCafe = await Cafe.find();
       res.status(200).json(allCafe);
     } catch (e) {
-      res.status(400).json({ error: e.toString() });
+      res.json({ error: e.toString() });
     }
   },
-  // createCafe: async (req, res) => {
-  //     try{
-  //         const {name, menu, phone, mail, adress} = req.body
-  //         await Cafe.create({
-  //             name,
-  //             menu,
-  //             phone,
-  //             mail,
-  //             adress
-  //         })
-  //         res.status(200).json('Кафе создано')
-  //     } catch(e) {
-  //         res.status(400).json({error: e.toString()})
-  //     }
-  // },
   deleteCafe: async (req, res) => {
     try {
-      await Cafe.findByIdAndRemove(req.params.id);
+      await Cafe.findByIdAndDelete(req.params.id);
       res.status(200).json("Кафе удалено");
     } catch (e) {
-      res.status(400).json({ error: e.toString() });
+      res.json({ error: e.toString() });
     }
   },
   getOneCafeById: async (req, res) => {
@@ -41,11 +26,11 @@ module.exports.cafeController = {
       const oneCafe = Cafe.find(req.params.id);
       res.status(200).json(oneCafe);
     } catch (e) {
-      res.status(404).json({ error: e.toString() });
+      res.json({ error: e.toString() });
     }
   },
   signUpCafe: async (req, res) => {
-    const { password, name, menu, phone, mail, adress } = req.body;
+    const { password, name, menu, phone, mail, address } = req.body;
     const hash = await bcrypt.hash(password, Number(BCRYPT_ROUNDS));
     try {
       await Cafe.create({
@@ -54,7 +39,7 @@ module.exports.cafeController = {
         menu,
         phone,
         mail,
-        adress
+        address
       });
       res.status(200).json("Кафе создано");
     } catch (e) {
@@ -68,10 +53,10 @@ module.exports.cafeController = {
         const candidate = await Cafe.findOne({ mail });
       }
       if (role === "courier") {
-        const candidate = await Cafe.findOne({ mail });
+        const candidate = await Courier.findOne({ mail });
       }
       if (role === "client") {
-        const candidate = await Cafe.findOne({ mail });
+        const candidate = await Client.findOne({ mail });
       }
 
       if (!candidate) {
