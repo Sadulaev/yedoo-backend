@@ -1,11 +1,12 @@
-const { foodController } = require('../controllers/food.controller')
+const { foodController } = require("../controllers/food.controller");
+import authMiddleware from "../middleware/auth.middleware";
 
-const { Router } = require('express')
+const { Router } = require("express");
 
-const router = Router()
+const router = Router();
 
-router.get('/', foodController.getAllFood)
-router.post('/', foodController.createFood)
-router.delete('/:id', foodController.deleteFood)
+router.get("/", foodController.getAllFood);
+router.post("/", authMiddleware, foodController.createFood);
+router.delete("/:id", authMiddleware, foodController.deleteFood);
 
 module.exports = router;

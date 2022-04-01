@@ -1,11 +1,12 @@
-const { clientController } = require('../controllers/client.controller')
+const { clientController } = require("../controllers/client.controller");
+import authMiddleware from "../middleware/auth.middleware";
 
-const { Router } = require('express')
+const { Router } = require("express");
 
-const router = Router()
+const router = Router();
 
-router.get('/', clientController.getAllClients)
-router.post('/', clientController.createClient)
-router.delete('/', clientController.deleteClient)
+router.get("/", clientController.getAllClients);
+router.post("/signup", clientController.signUpClient);
+router.delete("/",authMiddleware, clientController.deleteClient);
 
 module.exports = router;
