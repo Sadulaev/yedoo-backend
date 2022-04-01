@@ -3,21 +3,29 @@ const Food = require("../models/Food.model");
 module.exports.foodController = {
   getAllFood: async (req, res) => {
     try {
-      const response = await Food.find();
-      res.status(200).json(response);
+      const allFood = await Food.find();
+      res.status(200).json(allFood);
     } catch (e) {
-      res.status(400).json({ error: e.toString() });
+      res.json({ error: e.toString() });
+    }
+  },
+  getFoodByCafeId: async (req, res) => {
+    const { cafeId } = req.body;
+    try {
+      const foodByCafeId = await Food.findById(req.body.id);
+    } catch (e) {
+      res.json({ error: e.toString() });
     }
   },
   createFood: async (req, res) => {
+    const { name, image, info, category, price } = req.body;
     try {
-      const { name, image, info, category, price } = req.body;
       await Food.create({
         name,
         image,
         info,
         category,
-        price,
+        price
       });
       res.status(200).json("Еда создана");
     } catch (e) {
@@ -31,5 +39,5 @@ module.exports.foodController = {
     } catch {
       res.status(400).json({ error: e.toString() });
     }
-  },
+  }
 };

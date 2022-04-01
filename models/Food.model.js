@@ -19,6 +19,10 @@ const foodSchema = mongoose.Schema({
     type: Number,
     reqiured: true,
   },
+  cafeId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Food'
+  }
 });
 
 const Food = mongoose.model("Food", foodSchema);

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const clientSchema = mongoose.Schema({
+const courierSchema = mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -16,11 +16,11 @@ const clientSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    default: "client"
+    default: "courier"
   },
   password: String
 });
 
-const Client = mongoose.model("Client", clientSchema);
+const Courier = mongoose.model("Courier", clientSchema);
 
-module.exports = Client;
+module.exports = Courier;

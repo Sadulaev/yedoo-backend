@@ -3,23 +3,28 @@ const mongoose = require("mongoose");
 const cafeSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   menu: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Food",
-    },
+      ref: "Food"
+    }
   ],
   phone: {
     type: String,
-    required: true,
+    required: true
   },
   mail: String,
   adress: {
     type: String,
-    required: true,
+    required: true
   },
+  role: {
+    type: String,
+    default: "cafe"
+  },
+  password: String
 });
 
 const Cafe = mongoose.model("Cafe", cafeSchema);

@@ -6,8 +6,7 @@ import { route } from "./category.route";
 const router = Router();
 
 router.get("/", cafeController.getAllCafe);
-router.post("/", cafeController.createCafe);
+router.post("/signup", cafeController.signUpCafe);
 router.delete("/:id", authMiddleware, cafeController.deleteCafe);
-route.post("/signup", cafeController.signUp);
 
 module.exports = router;

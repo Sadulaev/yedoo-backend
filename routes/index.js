@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const roles = require('express-roles')
+const roles = require("express-roles");
 
 const router = Router();
 
