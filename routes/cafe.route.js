@@ -6,6 +6,7 @@ const router = Router();
 
 router.get("/", cafeController.getAllCafe);
 router.post("/signup", cafeController.signUpCafe);
+router.post("/signin", cafeController.signIn);
 router.delete("/:id", authMiddleware, cafeController.deleteCafe);
 
 module.exports = router;

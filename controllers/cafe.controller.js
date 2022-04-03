@@ -31,7 +31,7 @@ module.exports.cafeController = {
   },
   signUpCafe: async (req, res) => {
     const { password, name, menu, phone, mail, address } = req.body;
-    const hash = await bcrypt.hash(password, Number(BCRYPT_ROUNDS));
+    const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS));
     try {
       await Cafe.create({
         password: hash,
@@ -48,15 +48,16 @@ module.exports.cafeController = {
   },
   signIn: async (req, res) => {
     const { mail, password, role } = req.body;
+    
     try {
-      if (role === "cafe") {
-        const candidate = await Cafe.findOne({ mail });
+      let candidate;
+      candidate = await Cafe.findOne({ mail });
+
+      if (!candidate) {
+        candidate = await Courier.findOne({ mail });
       }
-      if (role === "courier") {
-        const candidate = await Courier.findOne({ mail });
-      }
-      if (role === "client") {
-        const candidate = await Client.findOne({ mail });
+      if (!candidate) {
+         candidate = await Client.findOne({ mail });
       }
 
       if (!candidate) {
