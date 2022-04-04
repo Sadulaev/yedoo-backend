@@ -7,6 +7,7 @@ const router = Router();
 
 router.get("/", clientController.getAllClients);
 router.post("/signup", clientController.signUpClient);
+// router.post("/signin", clientController.signIn);
 router.delete("/", authMiddleware, clientController.deleteClient);
 
 module.exports = router;
