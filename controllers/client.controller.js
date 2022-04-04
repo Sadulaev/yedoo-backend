@@ -1,4 +1,6 @@
 const Client = require("../models/Client.model");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports.clientController = {
   getAllClients: async (req, res) => {
@@ -9,20 +11,6 @@ module.exports.clientController = {
       res.status(400).json({ error: e.toString() });
     }
   },
-  // createClient: async (req, res) => {
-  //   try {
-  //     const { name, phone, mail, address } = req.body;
-  //     await Client.create({
-  //       name,
-  //       phone,
-  //       mail,
-  //       address
-  //     });
-  //     res.status(200).json("Клиент создан");
-  //   } catch (e) {
-  //     res.status(400).json({ error: e.toString() });
-  //   }
-  // },
   deleteClient: async (req, res) => {
     try {
       await Client.findByIdAndDelete(req.params.id);
@@ -32,17 +20,18 @@ module.exports.clientController = {
     }
   },
   signUpClient: async (req, res) => {
-    const { password, name, phone, mail, address } = req.body;
-    const hash = await bcrypt.hash(password, Number(BCRYPT_ROUNDS));
+    const { name, phone, city, address, mail, password } = req.body;
+    const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS));
     try {
       await Client.create({
-        password: hash,
         name,
         phone,
+        city,
+        address,
         mail,
-        address
+        password: hash
       });
-      res.status(200).json("Клиент создан");
+      res.status(200).json("Клиент добавлен");
     } catch (e) {
       res.status(400).json({ error: e.toString() });
     }
