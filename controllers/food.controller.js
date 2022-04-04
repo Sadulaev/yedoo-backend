@@ -20,14 +20,14 @@ module.exports.foodController = {
   createFood: async (req, res) => {
     const { name, image, info, category, price } = req.body;
     try {
-      await Food.create({
+      const newFood = await Food.create({
         name,
         image,
         info,
         category,
         price
       });
-      res.status(200).json("Еда создана");
+      res.status(200).json(newFood);
     } catch (e) {
       res.status(400).json({ error: e.toString() });
     }

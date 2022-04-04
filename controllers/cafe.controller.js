@@ -28,7 +28,9 @@ module.exports.cafeController = {
     }
   },
   signUpCafe: async (req, res) => {
+
     const { name, phone, city, address, mail, password } = req.body;
+    
     const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS));
     try {
       await Cafe.create({
