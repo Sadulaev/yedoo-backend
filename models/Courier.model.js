@@ -9,16 +9,16 @@ const courierSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  mail: String,
-  address: {
+  city: {
     type: String,
     required: true
   },
+  mail: String,
+  password: String,
   role: {
     type: String,
     default: "courier"
-  },
-  password: String
+  }
 });
 
 const Courier = mongoose.model("Courier", courierSchema);
