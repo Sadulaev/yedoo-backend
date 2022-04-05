@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const guestSchema = mongoose.Schema({
-    role: guest
+    role: {
+        type: String,
+        default: 'guest'
+    }
 })
 
 const Guest = mongoose.model('Guest', guestSchema)
