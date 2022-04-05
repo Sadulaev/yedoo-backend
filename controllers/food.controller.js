@@ -18,14 +18,15 @@ module.exports.foodController = {
     }
   },
   createFood: async (req, res) => {
-    const { name, image, info, category, price } = req.body;
+    const { name, image, info, categoryId, price } = req.body;
     try {
       const newFood = await Food.create({
         name,
         image,
         info,
-        category,
-        price
+        categoryId,
+        price,
+        cafeId: req.user.cafeId
       });
       res.status(200).json(newFood);
     } catch (e) {
@@ -39,5 +40,15 @@ module.exports.foodController = {
     } catch {
       res.status(400).json({ error: e.toString() });
     }
-  }
+  },
+
+  //Получение еды по категории(без не обходимости не менять):
+  getFoodByCategoryId: async (req, res) => {
+    try {
+      const foodByCategoryId = await Food.find({categoryId: req.params.id});
+      res.json(foodByCategoryId)
+    } catch (e) {
+      res.json({ error: e.toString() });
+    }
+  },
 };

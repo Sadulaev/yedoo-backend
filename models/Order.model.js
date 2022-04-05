@@ -15,6 +15,20 @@ const orderSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Cafe",
   },
+  courierId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Courier",
+  },
+  // Пока как идея проверки принятия или отклонения заказа
+  accepted: {
+    type: Boolean,
+    default: false
+  },
+  declined: {
+    type: Boolean,
+    default: false
+  },
+  //-------------------------------------------------------
   total: Number,
 });
 

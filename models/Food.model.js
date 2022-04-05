@@ -11,8 +11,9 @@ const foodSchema = mongoose.Schema({
       "https://www.ixbt.com/img/n1/news/2021/9/5/d5d11c91b095686fcaa0f14cf8bbb7fa-600x450_large.jpg",
   },
   info: String,
-  category: {
-    type: String,
+  categoryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
     required: true,
   },
   price: {
@@ -20,8 +21,8 @@ const foodSchema = mongoose.Schema({
     reqiured: true,
   },
   cafeId: {
-    type: mongoose.Types.ObjectId,
-    ref: 'Food'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Cafe'
   }
 });
 
