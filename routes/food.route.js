@@ -2,11 +2,12 @@ const { foodController } = require("../controllers/food.controller");
 const authMiddleware = require("../middleware/auth.middleware");
 
 const { Router } = require("express");
+const uploadImages = require("../middleware/uploadImages");
 
 const router = Router();
 
 router.get("/", foodController.getAllFood);
-router.post("/", authMiddleware, foodController.createFood);
+router.post("/", authMiddleware, uploadImages.single("image") ,foodController.createFood);
 router.delete("/:id", authMiddleware, foodController.deleteFood);
 router.get("/category/:id", foodController.getFoodByCategoryId)
 
