@@ -33,10 +33,11 @@ module.exports.signinController = {
         cafeId: candidate._id,
         role: candidate.role
       };
+
       token = await jwt.sign(payload, process.env.SECRET_JWT_KEY, {
         expiresIn: "14d"
       });
-      res.json({ token });
+      res.json({ token, id: candidate._id });
     } catch (e) {
       res.json({ error: e.toString() });
     }
