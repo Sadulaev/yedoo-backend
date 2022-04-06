@@ -11,6 +11,16 @@ module.exports.clientController = {
       res.status(400).json({ error: e.toString() });
     }
   },
+
+  getOneClient: async (req, res) => {
+    try {
+      const client = await Client.findById(req.params.id);
+      res.json(client)
+    } catch (err) {
+      res.json(500).json(err)
+    }
+  },
+
   deleteClient: async (req, res) => {
     try {
       await Client.findByIdAndDelete(req.params.id);
