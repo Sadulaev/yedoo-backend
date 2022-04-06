@@ -18,11 +18,11 @@ module.exports.foodController = {
     }
   },
   createFood: async (req, res) => {
-    const { name, image, info, categoryId, price } = req.body;
+    const { name, info, categoryId, price } = req.body;
     try {
       const newFood = await Food.create({
         name,
-        image,
+        image: req.file ? req.file.path : "",
         info,
         categoryId,
         price,
