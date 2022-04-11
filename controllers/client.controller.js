@@ -45,5 +45,14 @@ module.exports.clientController = {
     } catch (e) {
       res.status(400).json({ error: e.toString() });
     }
+  },
+  getClientByToken: async (req, res) => {
+    const clientId = req.user.cafeId
+    try {
+      const clientCurrent = await Client.findById(clientId);
+      res.json(clientCurrent);
+    } catch (e) {
+      res.json({error: e.toString()})
+    }
   }
 };

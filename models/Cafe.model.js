@@ -8,7 +8,7 @@ const cafeSchema = mongoose.Schema({
   image: {
     type: String,
     default:
-      "https://n1s1.hsmedia.ru/1e/96/d9/1e96d950aa96c869306772418d6bd3dd/800x533_0xac120003_21070923221615817336.jpg",
+      "files\\defaultcafe.jpg",
   },
   phone: {
     type: String,

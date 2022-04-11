@@ -51,4 +51,26 @@ module.exports.foodController = {
       res.json({ error: e.toString() });
     }
   },
+  getFoodByCafeToken: async (req, res) => {
+    const cafeId = req.user.cafeId
+    try {
+      const foodByCafeToken = await Food.find({cafeId: cafeId});
+      res.json(foodByCafeToken)
+    } catch (e) {
+      res.json({ error: e.toString() });
+    }
+  },
+  editFood: async (req, res) => {
+    const foodId = req.user.cafeId;
+    try {
+      const currentFood = await Food.find({foodId})
+      const editedFood = await Food.findByIdAndUpdate(cafeId, {
+        ...req.body,
+        image: req.file ? req.file.path : currentFood.image
+      });
+      res.json(editedFood);
+    } catch (e) {
+      res.json({error: e.toString()})
+    }
+  },
 };

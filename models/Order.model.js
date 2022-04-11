@@ -30,6 +30,8 @@ const orderSchema = mongoose.Schema({
   },
   //-------------------------------------------------------
   total: Number,
+  from: String,
+  to: String
 });
 
 const Order = mongoose.model("Order", orderSchema);

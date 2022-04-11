@@ -17,6 +17,8 @@ module.exports.orderController = {
         foodId,
         cafeId,
         total,
+        from,
+        to
       });
       res.status(200).json("Заказ создан");
     } catch (e) {
