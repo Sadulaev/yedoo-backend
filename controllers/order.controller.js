@@ -11,9 +11,8 @@ module.exports.orderController = {
   },
   createOrder: async (req, res) => {
     try {
-      const { clientId, foodId, cafeId, total } = req.body;
+      const { foodId, cafeId, total, from, to } = req.body;
       await Order.create({
-        clientId,
         foodId,
         cafeId,
         total,
