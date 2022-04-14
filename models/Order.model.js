@@ -20,18 +20,13 @@ const orderSchema = mongoose.Schema({
     ref: "Courier",
   },
   // Пока как идея проверки принятия или отклонения заказа
-  accepted: {
-    type: Boolean,
-    default: false
-  },
-  declined: {
-    type: Boolean,
-    default: false
-  },
+ 
   //-------------------------------------------------------
   total: Number,
   from: String,
-  to: String
+  to: String,
+  status: String,
+  recievedAt: String
 });
 
 const Order = mongoose.model("Order", orderSchema);

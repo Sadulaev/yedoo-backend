@@ -61,11 +61,14 @@ module.exports.foodController = {
     }
   },
   editFood: async (req, res) => {
-    const foodId = req.user.cafeId;
+    const {cafeId} = req.user;
+    const {foodId} = req.body
+    console.log(req.body)
     try {
       const currentFood = await Food.find({foodId})
-      const editedFood = await Food.findByIdAndUpdate(cafeId, {
+      const editedFood = await Food.findByIdAndUpdate(foodId, {
         ...req.body,
+        cafeId,
         image: req.file ? req.file.path : currentFood.image
       });
       res.json(editedFood);

@@ -21,7 +21,7 @@ module.exports.cafeController = {
     },
     getOneCafeById: async (req, res) => {
         try {
-            const oneCafe = Cafe.find(req.params.id);
+            const oneCafe = await Cafe.findById(req.params.id);
             res.status(200).json(oneCafe);
         } catch (e) {
             res.json({ error: e.toString() });
