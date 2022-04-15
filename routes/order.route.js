@@ -10,5 +10,6 @@ router.get("/", orderController.getOrder);
 router.post("/", orderController.createOrder);
 router.delete("/:id", orderController.deleteOrder);
 router.patch("/:id", authMiddleware, orderController.acceptOrder)
+router.patch("/:id/delivered", orderController.deliverOrder)
 
 module.exports = router;

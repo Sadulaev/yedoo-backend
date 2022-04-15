@@ -38,10 +38,25 @@ module.exports.orderController = {
   acceptOrder: async (req, res) => {
     const courierId = req.user.cafeId
     try {
-      const editedOrder = await Order.findByIdAndUpdate(req.params.id, {courierId, status: "atCourier"});
+      const editedOrder = await Order.findByIdAndUpdate(req.params.id, {courierId: courierId, status: "atCourier"}, {new: true});
+      console.log(editedOrder)
       res.json(editedOrder);
     }catch (e) {
       res.json({ error: e.toString() });
     }
-  }
+  },
+  deliverOrder: async (req, res) => {
+    // const courierId = req.user.cafeId
+    console.log(req.params.id)
+    try {
+      const currentOrder = await Order.findById(req.params.id);
+      currentOrder.status = "atClient"
+      await currentOrder.save();
+      // const editedOrder = await Order.findByIdAndUpdate(req.params.id, {courierId: courierId, status: "atCourier"}, {new: true});
+      console.log(currentOrder)
+      res.json(currentOrder);
+    }catch (e) {
+      res.json({ error: e.toString() });
+    }
+  },
 };
