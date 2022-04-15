@@ -59,4 +59,12 @@ module.exports.orderController = {
       res.json({ error: e.toString() });
     }
   },
+  getOrderById: async (req, res) => {
+    try {
+      const oneOrder = await Order.findById(req.params.id);
+      res.status(200).json(oneOrder);
+    } catch (e) {
+      res.json({ error: e.toString() });
+    }
+  },
 };

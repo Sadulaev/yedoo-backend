@@ -11,9 +11,10 @@ module.exports.cartController = {
   },
   createCart: async (req, res) => {
     try {
-      const { foodId } = req.body
+      const { foodId, cafeId } = req.body
       const responce = await Cart.create({
-        foods: [{ foodId }]
+        foods: [{ foodId }],
+        cafeId: cafeId
       })
       res.status(200).json(responce);
     } catch (e) {

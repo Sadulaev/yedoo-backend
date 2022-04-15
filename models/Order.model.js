@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema({
-  clientId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Client",
-  },
-  foodId: [
+  foods: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Food",
