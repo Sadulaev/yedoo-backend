@@ -39,5 +39,17 @@ module.exports.orderController = {
     } catch (e) {
       res.json({ error: e.toString() });
     }
+  },
+  acceptOrder: async (req, res) => {
+    const courierId = req.user.cafeId;
+    try {
+      const editedOrder = await Order.findByIdAndUpdate(req.params.id, {
+        courierId,
+        status: "atCourier"
+      });
+      res.json(editedOrder);
+    } catch (e) {
+      res.json({ error: e.toString() });
+    }
   }
 };
